@@ -39,7 +39,7 @@ function compute()
 
     /* Show the time and mod message in the DOM */
     let finalTime = hours.toString() + 'h ' + minutes.toString() + 'm ' + seconds.toString() + 's ' + milliseconds.toString() + 'ms';
-    let modMessage = `Mod Note: Retimed (Start: Frame ${startFrame}, End: Frame ${endFrame}, FPS: ${frameRate}, Total Time: ${finalTime})`;
+    let modMessage = `Mod Note: Retimed (Start: Frame ${Math.floor(startFrame * frameRate)}, End: Frame ${Math.floor(endFrame * frameRate)}, FPS: ${frameRate}, Total Time: ${finalTime})`;
     document.getElementById('time').value = finalTime;
     document.getElementById('modMessage').disabled = false;
     document.getElementById('modMessage').innerText = modMessage;    
