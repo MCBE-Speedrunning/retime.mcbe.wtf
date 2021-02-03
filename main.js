@@ -40,6 +40,11 @@ function time_format(t)
     ret += m + ":" + (s < 10 ? "0" : "");
     ret += s;
 
+    /* Milliseconds */
+    const st = t.toString();
+    if (!isNaN(t) && st.indexOf(".") != -1)
+        ret += "." + st.split(".")[1];
+
     return ret;
 }
 
