@@ -51,7 +51,7 @@ function compute() {
 }
 
 /* Allow user to copy mod message to clipboard */
-function copyModMessage() {
+function copy_mod_message() {
     const text_area = document.getElementById("mod_message");
     text_area.focus();
     text_area.select();
@@ -70,11 +70,11 @@ const check_fps =
             document.getElementById("framerate").reportValidity();
             document.getElementById("startobj").disabled = true;
             document.getElementById("endobj").disabled = true;
-            document.getElementById("computeButton").disabled = true;
+            document.getElementById("compute_button").disabled = true;
         } else {
             document.getElementById("startobj").disabled = false;
             document.getElementById("endobj").disabled = false;
-            document.getElementById("computeButton").disabled = false;
+            document.getElementById("compute_button").disabled = false;
         }
     }
 
