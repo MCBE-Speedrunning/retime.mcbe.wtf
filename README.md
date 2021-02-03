@@ -11,3 +11,5 @@ This fork also has a few other tweaks:
 * The mod message has been changed to include the exact frame instead of timestamps
 
 * The time format has been changed from `Xh Xm Xs Xms` to `XX:XX:XX.XXX`
+
+* Removed the alert that appears when copying the mod message

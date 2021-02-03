@@ -55,8 +55,8 @@ function copy_mod_message()
     text_area.focus();
     text_area.select();
     document.execCommand("copy");
-    alert(
-        `The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`);
+    // document.getElementById("mod_message").innerText = text_area.value + "\n\nCopied to clipboard
+    // successfully!"
 }
 
 /* If framerate is invalid, show an error message and disable start and end frame fields */
