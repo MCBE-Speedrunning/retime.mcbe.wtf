@@ -1,47 +1,23 @@
-function compute() {
-    /* Initiate basic time variables */
-    let h = 0;
-    let m = 0;
-    let s = 0;
-    let ms = 0;
-
+function compute()
+{
     /*
      * Get framerate, start frame, and end frame from corresponding elements
      * Double check they all have a value
      */
-    let fps = parseInt(document.getElementById("framerate").value);
-    let sframe = document.getElementById("startobj").value;
-    let eframe = document.getElementById("endobj").value;
+    const fps = parseInt(document.getElementById("framerate").value);
+    const sframe = document.getElementById("startobj").value;
+    const eframe = document.getElementById("endobj").value;
 
     if (typeof (sframe) === "undefined" || typeof (eframe) === "undefined"
         || typeof (fps) === "undefined")
         return;
 
-    /* Calculate framerate */
-    let frames = (eframe - sframe) * fps;
-    s = Math.floor(frames / fps);
-    frames = frames % fps;
-    ms = Math.round(frames / fps * 1000);
-    if (ms < 10)
-        ms = "00" + ms;
-    else if (ms < 100)
-        ms = "0" + ms;
-
-    if (s >= 60) {
-        m = Math.floor(s / 60);
-        s = s % 60;
-        s = s < 10 ? "0" + s : s;
-    }
-    if (m >= 60) {
-        h = Math.floor(m / 60);
-        m = m % 60;
-        m = m < 10 ? "0" + m : m;
-    }
+    const frames = (eframe - sframe) * fps;
+    const s = Math.floor(frames / fps);
 
     /* Show the time and mod message in the DOM */
-    let ftime =
-        h.toString() + "h " + m.toString() + "m " + s.toString() + "s " + ms.toString() + "ms";
-    let mod_message = `Mod Note: Retimed (Start: Frame ${sframe * fps}, End: ${
+    const ftime = time_format(s);
+    const mod_message = `Mod Note: Retimed (Start: Frame ${sframe * fps}, End: ${
         eframe * fps}, FPS: ${fps}, Total Time: ${ftime})`;
 
     document.getElementById("time").value = ftime;
@@ -50,8 +26,26 @@ function compute() {
     document.getElementById("mod_message_button").disabled = false;
 }
 
+/* Convert seconds to human readable time */
+function time_format(t)
+{
+    const h = ~~(time / 3600);
+    const m = ~~((time % 3600) / 60);
+    const s = ~~time % 60;
+    let ret = "";
+
+    if (h > 0)
+        ret += h + ":" + (m < 10 ? "0" : "");
+
+    ret += m + ":" + (s < 10 ? "0" : "");
+    ret += s;
+
+    return ret;
+}
+
 /* Allow user to copy mod message to clipboard */
-function copy_mod_message() {
+function copy_mod_message()
+{
     const text_area = document.getElementById("mod_message");
     text_area.focus();
     text_area.select();
@@ -82,9 +76,9 @@ const check_fps =
 const parse_time = (event) => {
     let inptext_frame = (JSON.parse(event.target.value)).lct;
     if (typeof inptext_frame !== "undefined") {
-        let fps = parseInt(document.getElementById("framerate").value);
-        let frameFromObj = (time, fps) => Math.floor(time * fps) / fps;
-        let fframe = frameFromObj(inptext_frame, fps);
+        const fps = parseInt(document.getElementById("framerate").value);
+        const frame_from_obj = (t, fps) => Math.floor(t * fps) / fps;
+        const fframe = frame_from_obj(inptext_frame, fps);
         document.getElementById(event.target.id).value = `${fframe}`;
     }
 }

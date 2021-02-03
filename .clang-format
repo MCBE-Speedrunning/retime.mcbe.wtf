@@ -12,8 +12,24 @@ AllowShortIfStatementsOnASingleLine:    Never
 AllowShortLoopsOnASingleLine:           false
 BinPackArguments:                       true
 BinPackParameters:                      true
+BraceWrapping:
+  AfterClass:                           false
+  AfterControlStatement:                false
+  AfterEnum:                            false
+  AfterFunction:                        true
+  AfterNamespace:                       true
+  AfterObjCDeclaration:                 false
+  AfterStruct:                          false
+  AfterUnion:                           false
+  AfterExternBlock:                     false
+  BeforeCatch:                          false
+  BeforeElse:                           false
+  IndentBraces:                         false
+  SplitEmptyFunction:                   true
+  SplitEmptyRecord:                     true
+  SplitEmptyNamespace:                  true
 BreakBeforeBinaryOperators:             NonAssignment
-BreakBeforeBraces:                      Attach
+BreakBeforeBraces:                      Custom
 BreakBeforeTernaryOperators:            true
 ColumnLimit:                            100
 ContinuationIndentWidth:                4
