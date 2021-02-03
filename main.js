@@ -13,7 +13,7 @@ function compute()
         return;
 
     const frames = (eframe - sframe) * fps;
-    const s = Math.floor(frames / fps);
+    const s = Math.trunc(frames / fps * 1000) / 1000;
 
     /* Show the time and mod message in the DOM */
     const ftime = time_format(s);
