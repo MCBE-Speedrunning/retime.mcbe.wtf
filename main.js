@@ -17,7 +17,7 @@ function compute()
 
     /* Show the time and mod message in the DOM */
     const ftime = time_format(s);
-    const mod_message = `Mod Note: Retimed (Start: Frame ${sframe * fps}, End: ${
+    const mod_message = `Mod Note: Retimed (Start Frame: ${sframe * fps}, End Frame: ${
         eframe * fps}, FPS: ${fps}, Total Time: ${ftime})`;
 
     document.getElementById("time").value = ftime;
