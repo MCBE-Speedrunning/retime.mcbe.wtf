@@ -60,18 +60,18 @@ function copy_mod_message()
  * frame fields */
 function check_fps(event)
 {
-	if (event.target.value === "" || parseInt(event.target.value) <= 0
-		|| isNaN(parseInt(event.target.value))) {
+	fps = event.target.value;
+	if (fps > 0 && fps % 1 == fps) {
+		document.getElementById("startobj").disabled = false;
+		document.getElementById("endobj").disabled = false;
+		document.getElementById("compute_button").disabled = false;
+	} else {
 		document.getElementById("framerate")
 			.setCustomValidity("Please enter a valid framerate.");
 		document.getElementById("framerate").reportValidity();
 		document.getElementById("startobj").disabled = true;
 		document.getElementById("endobj").disabled = true;
 		document.getElementById("compute_button").disabled = true;
-	} else {
-		document.getElementById("startobj").disabled = false;
-		document.getElementById("endobj").disabled = false;
-		document.getElementById("compute_button").disabled = false;
 	}
 }
 
