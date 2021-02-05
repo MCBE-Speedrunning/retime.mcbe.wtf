@@ -38,9 +38,8 @@ function time_format(t)
 	ret += s;
 
 	/* Milliseconds */
-	const st = t.toString();
-	if (!isNaN(t) && st.indexOf(".") != -1)
-		ret += "." + st.split(".")[1].toFixed(3);
+	if (t % 1 == 0)
+		ret += "." + t.toFixed(3).split(".")[1];
 	else
 		ret += ".000"
 
