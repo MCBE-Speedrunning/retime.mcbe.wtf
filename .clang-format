@@ -31,7 +31,7 @@ BraceWrapping:
 BreakBeforeBinaryOperators:             NonAssignment
 BreakBeforeBraces:                      Custom
 BreakBeforeTernaryOperators:            true
-ColumnLimit:                            100
+ColumnLimit:                            80
 ContinuationIndentWidth:                8
 DeriveLineEnding:                       true
 IndentCaseBlocks:                       false
@@ -58,3 +58,7 @@ SpacesInSquareBrackets:                 false
 TabWidth:                               8
 UseCRLF:                                false
 UseTab:                                 Always
+
+# Taken from git's rules (Except PenaltyBreakAssignment)
+PenaltyBreakAssignment:                             100
+PenaltyExcessCharacter:                             100
