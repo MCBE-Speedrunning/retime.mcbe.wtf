@@ -32,11 +32,11 @@ BreakBeforeBinaryOperators:             NonAssignment
 BreakBeforeBraces:                      Custom
 BreakBeforeTernaryOperators:            true
 ColumnLimit:                            100
-ContinuationIndentWidth:                4
+ContinuationIndentWidth:                8
 DeriveLineEnding:                       true
 IndentCaseBlocks:                       false
 IndentCaseLabels:                       false
-IndentWidth:                            4
+IndentWidth:                            8
 InsertTrailingCommas:                   None
 JavaScriptQuotes:                       Double
 JavaScriptWrapImports:                  true
@@ -55,6 +55,6 @@ SpacesInConditionalStatement:           false
 SpacesInContainerLiterals:              false
 SpacesInParentheses:                    false
 SpacesInSquareBrackets:                 false
-TabWidth:                               4
+TabWidth:                               8
 UseCRLF:                                false
-UseTab:                                 Never
+UseTab:                                 ForIndentation
