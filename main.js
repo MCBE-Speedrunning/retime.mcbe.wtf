@@ -2,22 +2,23 @@
 function compute()
 {
 	const fps = parseInt(document.getElementById("framerate").value);
-	const sframe = document.getElementById("startobj").value;
-	const eframe = document.getElementById("endobj").value;
+	const st = document.getElementById("startobj").value;
+	const et = document.getElementById("endobj").value;
 
-	if (typeof (sframe) === "undefined" || typeof (eframe) === "undefined"
-		|| typeof (fps) === "undefined")
+	if (st === undefined || et === undefined || fps === undefined)
 		return;
 
-	const frames = (eframe - sframe) * fps;
+	const frames = (et - st) * fps;
 	const s = Math.round(frames / fps * 1000) / 1000;
 
 	/* Show the time and mod message in the DOM */
-	const ftime = time_format(s);
-	const mod_message = `Mod Note: Retimed (Start Frame: ${sframe * fps}, End Frame: ${
-		eframe * fps}, FPS: ${fps}, Total Time: ${ftime})`;
+	const sf = st * fps;
+	const ef = et * fps;
+	const t = time_format(s);
+	const mod_message = `Mod Note: Retimed (Start Frame: ${
+		sf}, End Frame: ${ef}, FPS: ${fps}, Total Time: ${t})`;
 
-	document.getElementById("time").value = ftime;
+	document.getElementById("time").value = t;
 	document.getElementById("mod_message").disabled = false;
 	document.getElementById("mod_message").innerText = mod_message;
 	document.getElementById("mod_message_button").disabled = false;
@@ -43,7 +44,7 @@ function time_format(t)
 	else
 		ret += ".000"
 
-	return ret;
+		return ret;
 }
 
 /* Allow user to copy mod message to clipboard */
@@ -55,7 +56,8 @@ function copy_mod_message()
 	document.execCommand("copy");
 }
 
-/* If framerate is invalid, show an error message and disable start and end frame fields */
+/* If framerate is invalid, show an error message and disable start and end
+ * frame fields */
 function check_fps(event)
 {
 	if (event.target.value === "" || parseInt(event.target.value) <= 0
@@ -77,8 +79,9 @@ function check_fps(event)
 function parse_time(event)
 {
 	let inptext_frame = (JSON.parse(event.target.value)).lct;
-	if (typeof inptext_frame !== "undefined") {
-		const fps = parseInt(document.getElementById("framerate").value);
+	if (inptext_frame !== undefined) {
+		const fps = parseInt(
+			document.getElementById("framerate").value);
 		const frame_from_obj = (t, fps) => Math.floor(t * fps) / fps;
 		const fframe = frame_from_obj(inptext_frame, fps);
 		document.getElementById(event.target.id).value = `${fframe}`;
