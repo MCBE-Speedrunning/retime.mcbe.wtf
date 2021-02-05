@@ -1,15 +1,12 @@
+/* Compute the total duration of the run */
 function compute()
 {
-	/*
-	 * Get framerate, start frame, and end frame from corresponding elements
-	 * Double check they all have a value
-	 */
 	const fps = parseInt(document.getElementById("framerate").value);
 	const sframe = document.getElementById("startobj").value;
 	const eframe = document.getElementById("endobj").value;
 
 	if (typeof (sframe) === "undefined" || typeof (eframe) === "undefined"
-	        || typeof (fps) === "undefined")
+		|| typeof (fps) === "undefined")
 		return;
 
 	const frames = (eframe - sframe) * fps;
@@ -58,25 +55,26 @@ function copy_mod_message()
 }
 
 /* If framerate is invalid, show an error message and disable start and end frame fields */
-const check_fps =
-        (event) => {
-	        if (event.target.value === "" || parseInt(event.target.value) <= 0
-	                || isNaN(parseInt(event.target.value))) {
-		        document.getElementById("framerate")
-		                .setCustomValidity("Please enter a valid framerate.");
-		        document.getElementById("framerate").reportValidity();
-		        document.getElementById("startobj").disabled = true;
-		        document.getElementById("endobj").disabled = true;
-		        document.getElementById("compute_button").disabled = true;
-	        } else {
-		        document.getElementById("startobj").disabled = false;
-		        document.getElementById("endobj").disabled = false;
-		        document.getElementById("compute_button").disabled = false;
-	        }
-        }
+function check_fps(event)
+{
+	if (event.target.value === "" || parseInt(event.target.value) <= 0
+		|| isNaN(parseInt(event.target.value))) {
+		document.getElementById("framerate")
+			.setCustomValidity("Please enter a valid framerate.");
+		document.getElementById("framerate").reportValidity();
+		document.getElementById("startobj").disabled = true;
+		document.getElementById("endobj").disabled = true;
+		document.getElementById("compute_button").disabled = true;
+	} else {
+		document.getElementById("startobj").disabled = false;
+		document.getElementById("endobj").disabled = false;
+		document.getElementById("compute_button").disabled = false;
+	}
+}
 
 /* Get current frame from input field (either start time or end time) */
-const parse_time = (event) => {
+function parse_time(event)
+{
 	let inptext_frame = (JSON.parse(event.target.value)).lct;
 	if (typeof inptext_frame !== "undefined") {
 		const fps = parseInt(document.getElementById("framerate").value);
