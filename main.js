@@ -40,7 +40,9 @@ function time_format(t)
 	/* Milliseconds */
 	const st = t.toString();
 	if (!isNaN(t) && st.indexOf(".") != -1)
-		ret += "." + st.split(".")[1];
+		ret += "." + st.split(".")[1].toFixed(3);
+	else
+		ret += ".000"
 
 	return ret;
 }
