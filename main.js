@@ -42,9 +42,9 @@ function time_format(t)
 	if (t % 1 == 0)
 		ret += "." + t.toFixed(3).split(".")[1];
 	else
-		ret += ".000"
+		ret += ".000";
 
-		return ret;
+	return ret;
 }
 
 /* Allow user to copy mod message to clipboard */
