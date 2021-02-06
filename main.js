@@ -12,8 +12,8 @@ function compute()
 	const s = Math.round(frames / fps * 1000) / 1000;
 
 	/* Show the time and mod message in the DOM */
-	const sf = st * fps;
-	const ef = et * fps;
+	const sf = Math.trunc(st * fps);
+	const ef = Math.trunc(et * fps);
 	const t = time_format(s);
 	const mod_message = `Mod Note: Retimed (Start Frame: ${
 		sf}, End Frame: ${ef}, FPS: ${fps}, Total Time: ${t})`;
