@@ -61,7 +61,7 @@ function copy_mod_message()
 function check_fps(event)
 {
 	fps = event.target.value;
-	if (fps > 0 && fps % 1 == fps) {
+	if (fps > 0 && fps % 1 == 0) {
 		document.getElementById("startobj").disabled = false;
 		document.getElementById("endobj").disabled = false;
 		document.getElementById("compute_button").disabled = false;
