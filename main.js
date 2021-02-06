@@ -35,14 +35,7 @@ function time_format(t)
 	if (h > 0)
 		ret += h + ":" + (m < 10 ? "0" : "");
 
-	ret += m + ":" + (s < 10 ? "0" : "");
-	ret += s;
-
-	/* Milliseconds */
-	if (t % 1 == 0)
-		ret += "." + t.toFixed(3).split(".")[1];
-	else
-		ret += ".000";
+	ret += m + ":" + (s < 10 ? "0" : "") + s.toFixed(3);
 
 	return ret;
 }
