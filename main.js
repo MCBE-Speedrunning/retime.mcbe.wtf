@@ -29,7 +29,7 @@ function time_format(t)
 {
 	const h = ~~(t / 3600);
 	const m = ~~((t % 3600) / 60);
-	const s = ~~t % 60;
+	const s = t % 60;
 	let ret = "";
 
 	if (h > 0)
