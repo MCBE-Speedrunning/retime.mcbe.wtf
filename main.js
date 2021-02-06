@@ -39,7 +39,7 @@ function time_format(t)
 	ret += s;
 
 	/* Milliseconds */
-	if (t % 1 == 0)
+	if (t % 1 != 0)
 		ret += "." + t.toFixed(3).split(".")[1];
 	else
 		ret += ".000";
