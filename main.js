@@ -71,7 +71,7 @@ function check_fps(event)
 /* Get current frame from input field (either start time or end time) */
 function parse_time(event)
 {
-	let inptext_frame = (JSON.parse(event.target.value)).lct;
+	let inptext_frame = (JSON.parse(event.target.value)).cmt;
 	if (inptext_frame !== undefined) {
 		const fps = parseInt(
 			document.getElementById("framerate").value);
