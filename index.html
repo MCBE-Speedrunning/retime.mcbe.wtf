@@ -2,45 +2,49 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="version" content="1.1.1" />
-  <title>YouTube Frame Timer</title>
-  <link rel="stylesheet" href="https://stackedit.io/style.css" />
-  <script src="main.js"></script>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Speedrun, Retime">
+	<meta name="description" content="A speedrun retime tool">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>YouTube Frame Timer</title>
+	<link rel="stylesheet" href="https://stackedit.io/style.css">
+	<script src="main.js"></script>
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__html">
-    <h1 id="youtube-interval-timer">Speedrun Retimer without Ads</h1>
-    <h3 id="video-framerate">Video Framerate</h3>
-    <p>Right click the YouTube video and select “Stats for nerds.” The third line is “Current / Optimal Res” - find the
-      two numbers after the @ and enter them for framerate.</p>
-    <p>
-      <label for="framerate">Framerate: </label>
-      <input type="text" id="framerate" size="3" value="30" onchange='check_fps(event)' />
-    </p>
-    <h3 id="video-endpoints">Video Endpoints</h3>
-    <p>
-      Find the starting point (you can use the <code>,</code> and <code>.</code> keys to find the exact frame). Right
-      click the video and select “Copy debug info” and paste it for starting frame. Repeat for ending frame.
-    </p>
-    <p>
-      <label for="startobj">Starting frame: </label>
-      <input type="text" id="startobj" style='width:100%' onchange='parse_time(event)' />
-    </p>
-    <p>
-      <label for="endobj">Ending frame: </label>
-      <input type="text" id="endobj" style='width:100%' onchange='parse_time(event)' />
-    </p>
-    <h3 id="video-time">Video Time</h3>
-    <button id="compute_button" onclick="compute()">Compute time</button>&nbsp;<input type="text" id="time" readonly
-      size="20" />
-    <p>
-      <textarea id="mod_message" cols="40" rows="5" disabled></textarea>
-    </p>
-    <button id="mod_message_button" onclick="copy_mod_message()" disabled>Copy Mod Message to Clipboard</button>
-  </div>
+	<div class="stackedit__html">
+		<h1 id="youtube-interval-timer">Speedrun Retimer without Ads</h1>
+		<h3 id="video-framerate">Video Framerate</h3>
+		<p>Right click the YouTube video and select “Stats for nerds.” The
+			third line is “Current / Optimal Res” - find the two numbers after
+			the @ and enter them for framerate.</p>
+		<p>
+			<label for="framerate">Framerate: </label>
+			<input type="text" id="framerate" size="3" value="30" onchange='check_fps(event)'>
+		</p>
+		<h3 id="video-endpoints">Video Endpoints</h3>
+		<p>
+			Find the starting point (you can use the <code>,</code> and
+			<code>.</code> keys to find the exact frame). Right click the video
+			and select “Copy debug info” and paste it for starting frame. Repeat
+			for ending frame.
+		</p>
+		<p>
+			<label for="startobj">Starting frame: </label>
+			<input type="text" id="startobj" style='width:100%' onchange='parse_time(event)'>
+		</p>
+		<p>
+			<label for="endobj">Ending frame: </label>
+			<input type="text" id="endobj" style='width:100%' onchange='parse_time(event)'>
+		</p>
+		<h3 id="video-time">Video Time</h3>
+		<button id="compute_button" onclick="compute()">Compute time</button>&nbsp;<input type="text" id="time" readonly
+			size="20">
+		<p>
+			<textarea id="mod_message" cols="40" rows="5" disabled></textarea>
+		</p>
+		<button id="mod_message_button" onclick="copy_mod_message()" disabled>Copy Mod Message to Clipboard</button>
+	</div>
 </body>
 
 </html>
