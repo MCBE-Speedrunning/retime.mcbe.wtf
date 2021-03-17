@@ -71,7 +71,13 @@ function check_fps(event)
 /* Get current frame from input field (either start time or end time) */
 function parse_time(event)
 {
-	let inptext_frame = (JSON.parse(event.target.value)).cmt;
+	try {
+		inptext_frame = (JSON.parse(event.target.value)).cmt;
+	} catch {
+		document.getElementById(event.target.id).value = "";
+		return;
+	}
+
 	if (inptext_frame !== undefined) {
 		const fps = parseInt(
 			document.getElementById("framerate").value);
@@ -79,4 +85,8 @@ function parse_time(event)
 		const fframe = frame_from_obj(inptext_frame, fps);
 		document.getElementById(event.target.id).value = `${fframe}`;
 	}
+
+	if (document.getElementById("startobj").value
+		&& document.getElementById("endobj").value)
+		compute();
 }
