@@ -1,4 +1,4 @@
-/* Compute the total duration of the run */
+/* Compute the total duration of the run. */
 function compute()
 {
 	const fps = parseInt(document.getElementById("framerate").value);
@@ -11,7 +11,7 @@ function compute()
 	const frames = (et - st) * fps;
 	const s = Math.round(frames / fps * 1000) / 1000;
 
-	/* Show the time and mod message in the DOM */
+	/* Show the time and mod message in the DOM. */
 	const sf = Math.trunc(st * fps);
 	const ef = Math.trunc(et * fps);
 	const t = time_format(s);
@@ -24,7 +24,7 @@ function compute()
 	document.getElementById("mod_message_button").disabled = false;
 }
 
-/* Convert seconds to human readable time */
+/* Convert seconds to human readable time. */
 function time_format(t)
 {
 	const h = ~~(t / 3600);
@@ -40,7 +40,7 @@ function time_format(t)
 	return ret;
 }
 
-/* Allow user to copy mod message to clipboard */
+/* Allow user to copy mod message to clipboard. */
 function copy_mod_message()
 {
 	const text_area = document.getElementById("mod_message");
@@ -49,8 +49,10 @@ function copy_mod_message()
 	document.execCommand("copy");
 }
 
-/* If framerate is invalid, show an error message and disable start and end
- * frame fields */
+/*
+ * If framerate is invalid, show an error message and disable start and end
+ * frame fields.
+ */
 function check_fps(event)
 {
 	fps = event.target.value;
@@ -68,9 +70,10 @@ function check_fps(event)
 	}
 }
 
-/* Get current frame from input field (either start time or end time) */
+/* Get current frame from input field (either start time or end time). */
 function parse_time(event)
 {
+	let inptext_frame;
 	try {
 		inptext_frame = (JSON.parse(event.target.value)).cmt;
 	} catch {
@@ -89,4 +92,20 @@ function parse_time(event)
 	if (document.getElementById("startobj").value
 		&& document.getElementById("endobj").value)
 		compute();
+}
+
+/* Change the users preferred theme. */
+function change_preferance()
+{
+	const color_switch = document.getElementById("color_preference");
+
+	if (color_switch.checked) {
+		document.body.classList.add("dark");
+		document.body.classList.remove("light");
+		localStorage.setItem("preference", "dark");
+	} else {
+		document.body.classList.add("light");
+		document.body.classList.remove("dark");
+		localStorage.setItem("preference", "light");
+	}
 }
