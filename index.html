@@ -58,14 +58,16 @@
 				   onchange='parse_time(event)'>
 		</p>
 		<h3 id="video-time">Video Time</h3>
-		<input type="text" id="time" readonly size="20">
+		<input type="text" id="time" readonly size="40">
 		<p>
 			<textarea id="mod_message" cols="40" rows="3" readonly
 				disabled>
 			</textarea>
 		</p>
-		<button id="mod_message_button" onclick="copy_mod_message()"
-			disabled>Copy Mod Message to Clipboard</button>
+		<button id="mod_message_button" disabled
+			onclick="copy_mod_message()">
+			Copy Mod Message to Clipboard
+		</button>
 	</div>
 </body>
 
