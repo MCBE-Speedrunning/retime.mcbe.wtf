@@ -113,5 +113,12 @@ function change_theme()
 
 /* Automatically select the users preferred theme */
 const theme = localStorage.getItem("theme");
-document.documentElement.setAttribute("theme", theme);
-document.getElementById("page_theme").checked = (theme == "dark");
+
+/* I hate this it makes me want to die fuck you firefox */
+if (!theme) {
+	document.documentElement.setAttribute("theme", light);
+}
+else {
+	document.documentElement.setAttribute("theme", theme);
+	document.getElementById("page_theme").checked = (theme == "dark");
+}
