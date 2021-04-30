@@ -1,74 +1,60 @@
 ﻿<!DOCTYPE html>
-<html>
+<html theme="light">
 
 <head>
+	<title>YouTube Frame Timer</title>
 	<meta charset="utf-8">
 	<meta name="keywords" content="Speedrun, Retime">
 	<meta name="description" content="A speedrun retime tool">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>YouTube Frame Timer</title>
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen">
-	<!--
-	<link rel="stylesheet" href="dark.css" type="text/css" media="screen">
-	-->
-	<script src="main.js"></script>
 </head>
 
-<body class="stackedit">
-	<div class="stackedit__html">
-		<!--
-		TODO: Finish dark theme!
+<body>
+	<label class="switch">
+		<input type="checkbox" id="page_theme" onclick="change_theme()">
+		<span class="slider" id="slider"></span>
+	</label>
+	<!-- This needs to come after the above switch -->
+	<script src="main.js"></script>
 
-		<label class="switch">
-			<input type="checkbox" id="color_preference" onclick="change_preferance()">
-			<span class="slider round" id="slider"></span>
-		</label>
-		-->
-		<h1>Speedrun Retimer without Ads</h1>
-		<a href="https://github.com/Mango0x45/no-ad-retimer">
-			Source code (GitHub)
-		</a>
-		<h3 id="video-framerate">Video Framerate</h3>
-		<p>
-			Right click the YouTube video and select “Stats for
-			nerds.” The third line is “Current / Optimal Res” -
-			find the two numbers after the @ and enter them for
-			framerate.
-		</p>
-		<p>
-			<label for="framerate">Framerate: </label>
-			<input type="text" id="framerate" size="3" value="30"
-				onchange='check_fps(event)'>
-		</p>
-		<h3>Video Endpoints</h3>
-		<p>
-			Find the starting point (you can use the <code>,</code>
-			and <code>.</code> keys to find the exact frame). Right
-			click the video and select “Copy debug info” and paste
-			it for starting frame. Repeat for ending frame.
-		</p>
-		<p>
-			<label for="startobj">Starting frame: </label>
-			<input type="text" id="startobj" style='width:100%'
-				onchange='parse_time(event)'>
-		</p>
-		<p>
-			<label for="endobj">Ending frame: </label>
-			<input type="text" id="endobj" style='width:100%'
-				   onchange='parse_time(event)'>
-		</p>
-		<h3 id="video-time">Video Time</h3>
-		<input type="text" id="time" readonly size="40">
-		<p>
-			<textarea id="mod_message" cols="40" rows="3" readonly
-				disabled>
-			</textarea>
-		</p>
-		<button id="mod_message_button" disabled
-			onclick="copy_mod_message()">
-			Copy Mod Message to Clipboard
-		</button>
-	</div>
+	<h1>Speedrun Retimer without Ads</h1>
+	<a href="https://github.com/Mango0x45/no-ad-retimer" target="_blank">
+		Source code (GitHub)
+	</a>
+	<h3 id="video-framerate">Video Framerate</h3>
+	<p>
+		Right click the YouTube video and select “Stats for nerds.” The third line is
+		“Current / Optimal Res” - find the two numbers after the @ and enter them for
+		framerate.
+	</p>
+	<p>
+		<label for="framerate">Framerate: </label>
+		<input type="text" id="framerate" size="3" value="30" onchange='check_fps(event)'>
+	</p>
+	<h3>Video Endpoints</h3>
+	<p>
+		Find the starting point (you can use the <code>,</code> and <code>.</code> keys to
+		find the exact frame). Right click the video and select “Copy debug info” and paste
+		it for starting frame. Repeat for ending frame.
+	</p>
+	<p>
+		<label for="startobj">Starting frame: </label>
+		<input type="text" id="startobj" style='width:100%' onchange='parse_time(event)'>
+	</p>
+	<p>
+		<label for="endobj">Ending frame: </label>
+		<input type="text" id="endobj" style='width:100%' onchange='parse_time(event)'>
+	</p>
+	<h3 id="video-time">Video Time</h3>
+	<input type="text" id="time" readonly size="40">
+	<p>
+		<textarea id="mod_message" cols="40" rows="3" readonly disabled>
+		</textarea>
+	</p>
+	<button id="mod_message_button" disabled onclick="copy_mod_message()">
+		Copy Mod Message to Clipboard
+	</button>
 </body>
 
 </html>

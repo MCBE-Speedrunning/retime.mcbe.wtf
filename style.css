@@ -1,10 +1,33 @@
-/*
- * This is a stripped down version of the style.css found over at
- * https://stackedit.io
- */
+:root {
+	--slider-color: #FFFFFF;
+	--slider-bg-on-color: #2196F3;
+	--slider-bg-off-color: #CCCCCC;
+}
+
+[theme="light"] {
+	--bg-color: #FFFFFF;
+	--text-color: #24292E;
+	--box-color: #DDDDDD;
+	--url-color: #0366D6;
+	--underline-color: #EAECEF;
+}
+
+[theme="dark"] {
+	--bg-color: #22272E;
+	--text-color: #ADBAC7;
+	--box-color: #2D333B;
+	--url-color: #539BF5;
+	--underline-color: #373E47;
+}
 
 body {
-	margin: 0;
+	background-color: var(--bg-color);
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 70%;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 html {
@@ -14,7 +37,6 @@ html {
 }
 
 body, html {
-	color: rgba(0, 0, 0, 0.75);
 	font-size: 16px;
 	font-family: Lato, Helvetica Neue, Helvetica, sans-serif;
 	font-variant-ligatures: common-ligatures;
@@ -24,16 +46,12 @@ body, html {
 }
 
 h1 {
-	font-size: 2em;
-	margin: 0.67em 0;
-}
-
-h1:after {
+	border-bottom: 1px solid var(--underline-color);
 	content: "";
 	display: block;
+	font-size: 2em;
 	position: relative;
 	top: 0.33em;
-	border-bottom: 1px solid hsla(0, 0%, 50%, 0.33);
 }
 
 h1, h3 {
@@ -45,9 +63,18 @@ p {
 	margin: 1.2em 0;
 }
 
+
+button, h1, h3, input, p, textarea {
+	color: var(--text-color);
+}
+
+button, input, code, textarea {
+	background-color: var(--box-color);
+}
+
 a {
 	background-color: transparent;
-	color: #0c93e4;
+	color: var(--url-color);
 	text-decoration: underline;
 	text-decoration-skip: ink;
 	-webkit-text-decoration-skip: objects;
@@ -57,27 +84,20 @@ a:focus, a:hover {
 	text-decoration: none;
 }
 
-code {
-	background-color: rgba(0, 0, 0, 0.05);
-	border-radius: 3px;
-	padding: 2px 4px;
-	font-family: Roboto Mono, Lucida Sans Typewriter, Lucida Console,
-		monaco, Courrier, monospace;
-	font-size: 0.85em;
-	font-family: monospace, monospace;
-	font-size: 1em;
-}
-
-code * {
-	font-size: inherit;
-}
-
 button {
 	overflow: visible;
 	text-transform: none;
 }
 
+code {
+	font-family: Roboto Mono, Lucida Sans Typewriter, Lucida Console, monaco, Courrier,
+		monospace;
+	font-size: 1em;
+	padding: 2px 4px;
+}
+
 input {
+	border: none;
 	overflow: visible;
 }
 
@@ -85,18 +105,65 @@ textarea {
 	overflow: auto;
 }
 
-button, input, textarea {
+button, code, input, textarea {
+	border: none;
+	border-radius: 6px;
 	font-family: sans-serif;
 	font-size: 100%;
-	line-height: 1.15;
+	line-height: 1.5;
 	margin: 0;
 }
 
-.stackedit__html {
-	margin-bottom: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 30px;
-	padding-right: 30px;
-	max-width: 70%;
+.switch {
+	display: inline-flex;
+	float: right;
+	height: 34px;
+	position: relative;
+	width: 60px;
+}
+
+.switch input {
+	height: 0;
+	opacity: 0;
+	width: 0;
+}
+
+.slider {
+	background-color: var(--slider-bg-off-color);
+	border-radius: 34px;
+	bottom: 0;
+	position: absolute;
+	cursor: pointer;
+	left: 0;
+	right: 0;
+	top: 0;
+	transition: .4s;
+	-webkit-transition: .4s;
+}
+
+.slider:before {
+	background-color: var(--slider-color);
+	border-radius: 50%;
+	bottom: 4px;
+	content: "";
+	height: 26px;
+	left: 4px;
+	position: absolute;
+	transition: .4s;
+	width: 26px;
+	-webkit-transition: .4s;
+}
+
+input:checked + .slider {
+	background-color: var(--slider-bg-on-color);
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px var(--slider-bg-on-color);
+}
+
+input:checked + .slider:before {
+	transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	-webkit-transform: translateX(26px);
 }

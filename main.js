@@ -5,18 +5,25 @@ function compute()
 	const st = document.getElementById("startobj").value;
 	const et = document.getElementById("endobj").value;
 
+	/* Return early if not all fields are filled */
 	if (st === undefined || et === undefined || fps === undefined)
 		return;
 
+	/* Return early on a negative time */
 	const frames = (et - st) * fps;
+	if (frames < 0) {
+		document.getElementById("time").value = "Error: Negative time";
+		return;
+	}
+
 	const s = Math.round(frames / fps * 1000) / 1000;
 
 	/* Show the time and mod message in the DOM. */
 	const sf = Math.trunc(st * fps);
 	const ef = Math.trunc(et * fps);
 	const t = time_format(s);
-	const mod_message = `Mod Note: Retimed (Start Frame: ${
-		sf}, End Frame: ${ef}, FPS: ${fps}, Total Time: ${t})`;
+	const mod_message = `Mod Note: Retimed (Start Frame: ${sf}, End Frame: ${ef}, FPS: ${
+		fps}, Total Time: ${t})`;
 
 	document.getElementById("time").value = t;
 	document.getElementById("mod_message").disabled = false;
@@ -49,63 +56,62 @@ function copy_mod_message()
 	document.execCommand("copy");
 }
 
-/*
- * If framerate is invalid, show an error message and disable start and end
- * frame fields.
- */
+/* If framerate is invalid, show an error message and disable start and end frame fields. */
 function check_fps(event)
 {
 	fps = event.target.value;
 	if (fps > 0 && fps % 1 == 0) {
 		document.getElementById("startobj").disabled = false;
 		document.getElementById("endobj").disabled = false;
-		document.getElementById("compute_button").disabled = false;
-	} else {
+	}
+	else {
 		document.getElementById("framerate")
 			.setCustomValidity("Please enter a valid framerate.");
 		document.getElementById("framerate").reportValidity();
 		document.getElementById("startobj").disabled = true;
 		document.getElementById("endobj").disabled = true;
-		document.getElementById("compute_button").disabled = true;
 	}
 }
 
 /* Get current frame from input field (either start time or end time). */
 function parse_time(event)
 {
-	let inptext_frame;
+	/* Return early if invalid JSON is passed (numbers are valid) */
+	let inp, dinfo;
 	try {
-		inptext_frame = (JSON.parse(event.target.value)).cmt;
+		dinfo = JSON.parse(event.target.value);
 	} catch {
 		document.getElementById(event.target.id).value = "";
 		return;
 	}
 
-	if (inptext_frame !== undefined) {
-		const fps = parseInt(
-			document.getElementById("framerate").value);
-		const frame_from_obj = (t, fps) => Math.floor(t * fps) / fps;
-		const fframe = frame_from_obj(inptext_frame, fps);
-		document.getElementById(event.target.id).value = `${fframe}`;
+	/* If cmt isn't available fallback to lct, also allow raw numbers */
+	if (!(inp = dinfo.cmt) && !(inp = dinfo.lct) && typeof ((inp = dinfo)) !== "number") {
+		document.getElementById(event.target.id).value = "";
+		return;
 	}
 
-	if (document.getElementById("startobj").value
-		&& document.getElementById("endobj").value)
+	/* Calculate the exact timestamp */
+	const fps = parseInt(document.getElementById("framerate").value);
+	const frame = Math.floor(inp * fps) / fps;
+	document.getElementById(event.target.id).value = `${frame}`;
+
+	/* If all fields are filled the compute */
+	if (document.getElementById("startobj").value && document.getElementById("endobj").value)
 		compute();
 }
 
 /* Change the users preferred theme. */
-function change_preferance()
+function change_theme()
 {
-	const color_switch = document.getElementById("color_preference");
+	const theme_switch = document.getElementById("page_theme");
+	const want = theme_switch.checked ? "dark" : "light";
 
-	if (color_switch.checked) {
-		document.body.classList.add("dark");
-		document.body.classList.remove("light");
-		localStorage.setItem("preference", "dark");
-	} else {
-		document.body.classList.add("light");
-		document.body.classList.remove("dark");
-		localStorage.setItem("preference", "light");
-	}
+	document.documentElement.setAttribute("theme", want);
+	localStorage.setItem("theme", want);
 }
+
+/* Automatically select the users preferred theme */
+const theme = localStorage.getItem("theme");
+document.documentElement.setAttribute("theme", theme);
+document.getElementById("page_theme").checked = (theme == "dark");
