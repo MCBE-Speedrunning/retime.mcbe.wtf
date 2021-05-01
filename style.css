@@ -21,8 +21,8 @@
 }
 
 body {
-  display:inline-block;
 	background-color: var(--bg-color);
+	display:inline-block;
 	margin-bottom: 20px;
 	margin-left: auto;
 	margin-right: auto;
