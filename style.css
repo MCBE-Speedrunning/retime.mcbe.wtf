@@ -21,6 +21,7 @@
 }
 
 body {
+  display:inline-block;
 	background-color: var(--bg-color);
 	margin-bottom: 20px;
 	margin-left: auto;
