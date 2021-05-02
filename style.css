@@ -22,7 +22,6 @@
 
 body {
 	background-color: var(--bg-color);
-	display:inline-block;
 	margin-bottom: 20px;
 	margin-left: auto;
 	margin-right: auto;
@@ -124,6 +123,7 @@ button, code, input, textarea {
 }
 
 .switch input {
+	display: inline-block;
 	height: 0;
 	opacity: 0;
 	width: 0;
