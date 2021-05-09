@@ -22,8 +22,8 @@ function compute()
 	const s_frame = Math.trunc(s_time * fps);
 	const e_frame = Math.trunc(e_time * fps);
 	const time = time_format(seconds);
-	const mod_message = `Mod Note: Retimed (Start Frame: ${s_frame}, End Frame: ${e_frame}, FPS: ${
-		fps}, Total Time: ${time})`;
+	const mod_message = `Mod Note: Retimed (Start Frame: ${s_frame}, End Frame: ${
+		e_frame}, FPS: ${fps}, Total Time: ${time})`;
 
 	document.getElementById("time").value = time;
 	document.getElementById("mod_message").disabled = false;
@@ -86,7 +86,7 @@ function parse_time(event)
 	}
 
 	/* If cmt isn't available fallback to lct, also allow raw numbers */
-	if (!(inp = dinfo.cmt) && !(inp = dinfo.lct) && typeof ((inp = dinfo)) !== "number") {
+	if (!(input = dinfo.cmt) && !(input = dinfo.lct) && typeof ((input = dinfo)) !== "number") {
 		document.getElementById(event.target.id).value = "";
 		return;
 	}
