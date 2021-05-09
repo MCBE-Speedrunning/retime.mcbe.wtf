@@ -2,30 +2,30 @@
 function compute()
 {
 	const fps = parseInt(document.getElementById("framerate").value);
-	const st = document.getElementById("startobj").value;
-	const et = document.getElementById("endobj").value;
+	const s_time = document.getElementById("startobj").value;
+	const e_time = document.getElementById("endobj").value;
 
 	/* Return early if not all fields are filled */
-	if (st === undefined || et === undefined || fps === undefined)
+	if (s_time === undefined || e_time === undefined || fps === undefined)
 		return;
 
 	/* Return early on a negative time */
-	const frames = (et - st) * fps;
+	const frames = (e_time - s_time) * fps;
 	if (frames < 0) {
 		document.getElementById("time").value = "Error: Negative time";
 		return;
 	}
 
-	const s = Math.round(frames / fps * 1000) / 1000;
+	const seconds = Math.round(frames / fps * 1000) / 1000;
 
 	/* Show the time and mod message in the DOM. */
-	const sf = Math.trunc(st * fps);
-	const ef = Math.trunc(et * fps);
-	const t = time_format(s);
-	const mod_message = `Mod Note: Retimed (Start Frame: ${sf}, End Frame: ${ef}, FPS: ${
-		fps}, Total Time: ${t})`;
+	const s_frame = Math.trunc(s_time * fps);
+	const e_frame = Math.trunc(e_time * fps);
+	const time = time_format(seconds);
+	const mod_message = `Mod Note: Retimed (Start Frame: ${s_frame}, End Frame: ${e_frame}, FPS: ${
+		fps}, Total Time: ${time})`;
 
-	document.getElementById("time").value = t;
+	document.getElementById("time").value = time;
 	document.getElementById("mod_message").disabled = false;
 	document.getElementById("mod_message").innerText = mod_message;
 	document.getElementById("mod_message_button").disabled = false;
@@ -50,9 +50,9 @@ function time_format(t)
 /* Allow user to copy mod message to clipboard. */
 function copy_mod_message()
 {
-	const text_area = document.getElementById("mod_message");
-	text_area.focus();
-	text_area.select();
+	const mod_message = document.getElementById("mod_message");
+	mod_message.focus();
+	mod_message.select();
 	document.execCommand("copy");
 }
 
@@ -77,7 +77,7 @@ function check_fps(event)
 function parse_time(event)
 {
 	/* Return early if invalid JSON is passed (numbers are valid) */
-	let inp, dinfo;
+	let input, dinfo;
 	try {
 		dinfo = JSON.parse(event.target.value);
 	} catch {
@@ -93,7 +93,7 @@ function parse_time(event)
 
 	/* Calculate the exact timestamp */
 	const fps = parseInt(document.getElementById("framerate").value);
-	const frame = Math.floor(inp * fps) / fps;
+	const frame = Math.floor(input * fps) / fps;
 	document.getElementById(event.target.id).value = `${frame}`;
 
 	/* If all fields are filled the compute */
@@ -113,12 +113,7 @@ function change_theme()
 
 /* Automatically select the users preferred theme */
 const theme = localStorage.getItem("theme");
-
-/* I hate this it makes me want to die fuck you firefox */
-if (!theme) {
-	document.documentElement.setAttribute("theme", "light");
-}
-else {
+if (theme) {
 	document.documentElement.setAttribute("theme", theme);
 	document.getElementById("page_theme").checked = (theme == "dark");
 }
