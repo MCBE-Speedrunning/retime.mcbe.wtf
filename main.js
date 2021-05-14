@@ -25,19 +25,14 @@ function compute()
 
 	document.getElementById("time").value = time;
 	document.getElementById("mod_message").disabled = false;
-	document.getElementById("mod_message").innerText = generate_mod_message(fps,
-										s_time,
-										e_time,
-										time,
-										s_frame,
-										e_frame,
-										frames,
-										seconds);
+	document.getElementById("mod_message").innerText = generate_mod_message(
+		fps, s_time, e_time, time, s_frame, e_frame, frames, seconds);
 	document.getElementById("mod_message_button").disabled = false;
 }
 
 /* Support custom mod messages. Find a better way to do this, it is very cringe! */
-function generate_mod_message(fps, start_time, end_time, total_time, start_frame, end_frame, total_frames, total_seconds)
+function generate_mod_message(
+	fps, start_time, end_time, total_time, start_frame, end_frame, total_frames, total_seconds)
 {
 	let mod_message = localStorage.getItem("custom_mod_message");
 
@@ -55,27 +50,27 @@ function generate_mod_message(fps, start_time, end_time, total_time, start_frame
 	const three_prec_millis = milliseconds.toFixed(3).replace("0.", "");
 
 	mod_message = mod_message.replaceAll("${FPS}", fps)
-	.replaceAll("${H}", hours)
-	.replaceAll("${M}", minutes)
-	.replaceAll("${S}", seconds)
-	.replaceAll("${MS}", milliseconds)
+			      .replaceAll("${H}", hours)
+			      .replaceAll("${M}", minutes)
+			      .replaceAll("${S}", seconds)
+			      .replaceAll("${MS}", milliseconds)
 
-	.replaceAll("${PM}", padded_minutes)
-	.replaceAll("${PS}", padded_seconds)
+			      .replaceAll("${PM}", padded_minutes)
+			      .replaceAll("${PS}", padded_seconds)
 
-	.replaceAll("${1MS}", one_prec_millis)
-	.replaceAll("${2MS}", two_prec_millis)
-	.replaceAll("${3MS}", three_prec_millis)
+			      .replaceAll("${1MS}", one_prec_millis)
+			      .replaceAll("${2MS}", two_prec_millis)
+			      .replaceAll("${3MS}", three_prec_millis)
 
-	.replaceAll("${TS}", total_seconds)
+			      .replaceAll("${TS}", total_seconds)
 
-	.replaceAll("${ST}", start_time)
-	.replaceAll("${ET}", end_time)
-	.replaceAll("${TT}", total_time)
+			      .replaceAll("${ST}", start_time)
+			      .replaceAll("${ET}", end_time)
+			      .replaceAll("${TT}", total_time)
 
-	.replaceAll("${SF}", start_frame)
-	.replaceAll("${EF}", end_frame)
-	.replaceAll("${TF}", total_frames)
+			      .replaceAll("${SF}", start_frame)
+			      .replaceAll("${EF}", end_frame)
+			      .replaceAll("${TF}", total_frames)
 
 	return mod_message;
 }

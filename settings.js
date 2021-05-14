@@ -1,4 +1,5 @@
-const mod_message_default = "Mod Note: Retimed (Start Frame: ${SF}, End Frame: ${EF}, FPS: ${FPS}, Total Time: ${TT})";
+const mod_message_default =
+	"Mod Note: Retimed (Start Frame: ${SF}, End Frame: ${EF}, FPS: ${FPS}, Total Time: ${TT})";
 
 /* Set all the settings any time someone loads a page */
 function set_settings()
@@ -17,7 +18,8 @@ function settings_init()
 	document.getElementById("page_text").checked = (localStorage.getItem("remove_text")
 							=== "true");
 	const mod_message = localStorage.getItem("custom_mod_message");
-	document.getElementById("custom_mod_message").value = mod_message ? mod_message : mod_message_default;
+	document.getElementById("custom_mod_message").value = mod_message ? mod_message
+									  : mod_message_default;
 }
 
 /* Change the users preferred theme. */
