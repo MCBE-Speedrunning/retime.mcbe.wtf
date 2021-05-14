@@ -7,7 +7,7 @@ function set_settings()
 	change_theme();
 	remove_titles();
 	remove_text();
-	set_mod_message();
+	set_mod_message(null);
 }
 
 /* Initialize the settings page by flipping the switches and such */
@@ -84,10 +84,11 @@ function remove_text()
 /* Set a custom mod message */
 function set_mod_message(event)
 {
-	if (event.target.value.replace(/\s/g, ""))
+	if (event && event.target.value.replace(/\s/g, ""))
 		localStorage.setItem("custom_mod_message", event.target.value);
 	else {
-		event.target.value = mod_message_default;
+		if (event)
+			event.target.value = mod_message_default;
 		localStorage.setItem("custom_mod_message", mod_message_default);
 	}
 }
