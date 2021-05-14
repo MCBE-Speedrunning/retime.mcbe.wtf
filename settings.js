@@ -7,6 +7,7 @@ function set_settings()
 	change_theme();
 	remove_titles();
 	remove_text();
+	set_mod_message();
 }
 
 /* Initialize the settings page by flipping the switches and such */
