@@ -1,3 +1,5 @@
+const mod_message_default = "Mod Note: Retimed (Start Frame: ${SF}, End Frame: ${EF}, FPS: ${FPS}, Total Time: ${TT})";
+
 /* Set all the settings any time someone loads a page */
 function set_settings()
 {
@@ -10,8 +12,12 @@ function set_settings()
 function settings_init()
 {
 	document.getElementById("page_theme").checked = (localStorage.getItem("theme") === "dark");
-	document.getElementById("page_titles").checked = (localStorage.getItem("remove_titles") === "true");
-	document.getElementById("page_text").checked = (localStorage.getItem("remove_text") === "true");
+	document.getElementById("page_titles").checked = (localStorage.getItem("remove_titles")
+							  === "true");
+	document.getElementById("page_text").checked = (localStorage.getItem("remove_text")
+							=== "true");
+	const mod_message = localStorage.getItem("custom_mod_message");
+	document.getElementById("custom_mod_message").value = mod_message ? mod_message : mod_message_default;
 }
 
 /* Change the users preferred theme. */
@@ -70,6 +76,17 @@ function remove_text()
 		for (let element of document.getElementsByClassName("toggleable"))
 			element.classList.add("hidden");
 	localStorage.setItem("remove_text", checked.toString());
+}
+
+/* Set a custom mod message */
+function set_mod_message(event)
+{
+	if (event.target.value.replace(/\s/g, ""))
+		localStorage.setItem("custom_mod_message", event.target.value);
+	else {
+		event.target.value = mod_message_default;
+		localStorage.setItem("custom_mod_message", mod_message_default);
+	}
 }
 
 /* Conform to the users preferences */

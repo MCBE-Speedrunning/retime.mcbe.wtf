@@ -22,13 +22,62 @@ function compute()
 	const s_frame = Math.trunc(s_time * fps);
 	const e_frame = Math.trunc(e_time * fps);
 	const time = time_format(seconds);
-	const mod_message = `Mod Note: Retimed (Start Frame: ${s_frame}, End Frame: ${
-		e_frame}, FPS: ${fps}, Total Time: ${time})`;
 
 	document.getElementById("time").value = time;
 	document.getElementById("mod_message").disabled = false;
-	document.getElementById("mod_message").innerText = mod_message;
+	document.getElementById("mod_message").innerText = generate_mod_message(fps,
+										s_time,
+										e_time,
+										time,
+										s_frame,
+										e_frame,
+										frames,
+										seconds);
 	document.getElementById("mod_message_button").disabled = false;
+}
+
+/* Support custom mod messages. Find a better way to do this, it is very cringe! */
+function generate_mod_message(fps, start_time, end_time, total_time, start_frame, end_frame, total_frames, total_seconds)
+{
+	let mod_message = localStorage.getItem("custom_mod_message");
+
+	const hours = ~~(total_seconds / 3600)
+	const minutes = ~~((total_seconds % 3600) / 60);
+	const seconds = Math.trunc(total_seconds % 60);
+	const milliseconds = total_seconds % 60 % 1;
+
+	const padded_minutes = (minutes < 10) ? "0" + minutes : minutes;
+	const padded_seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+	/* TODO: THIS IS REALLY BAD CODE!! FIX THIS!! */
+	const one_prec_millis = milliseconds.toFixed(1).replace("0.", "");
+	const two_prec_millis = milliseconds.toFixed(2).replace("0.", "");
+	const three_prec_millis = milliseconds.toFixed(3).replace("0.", "");
+
+	mod_message = mod_message.replaceAll("${FPS}", fps)
+	.replaceAll("${H}", hours)
+	.replaceAll("${M}", minutes)
+	.replaceAll("${S}", seconds)
+	.replaceAll("${MS}", milliseconds)
+
+	.replaceAll("${PM}", padded_minutes)
+	.replaceAll("${PS}", padded_seconds)
+
+	.replaceAll("${1MS}", one_prec_millis)
+	.replaceAll("${2MS}", two_prec_millis)
+	.replaceAll("${3MS}", three_prec_millis)
+
+	.replaceAll("${TS}", total_seconds)
+
+	.replaceAll("${ST}", start_time)
+	.replaceAll("${ET}", end_time)
+	.replaceAll("${TT}", total_time)
+
+	.replaceAll("${SF}", start_frame)
+	.replaceAll("${EF}", end_frame)
+	.replaceAll("${TF}", total_frames)
+
+	return mod_message;
 }
 
 /* Convert seconds to human readable time. */
@@ -93,7 +142,7 @@ function parse_time(event)
 
 	/* Calculate the exact timestamp */
 	const fps = parseInt(document.getElementById("framerate").value);
-	const frame = Math.floor(input * fps) / fps;
+	const frame = ~~(input * fps) / fps;
 	document.getElementById(event.target.id).value = `${frame}`;
 
 	/* If all fields are filled the compute */
