@@ -5,48 +5,49 @@ Variables can be used with the `${VAR}` syntax. Anyone who has programmed/script
 such as Shell Script should be familiar with this syntax.
 
 The following variables are supported:
-	- `H` (Hours)
 
-	- `M` (Minutes)
+- `H` (Hours)
 
-	- `S` (Seconds)
+- `M` (Minutes)
 
-	- `MS` (Milliseconds)
+- `S` (Seconds)
 
-	- `PM` (Padded Minutes)
-		- `5` becomes `05`, `18` remains `18`
+- `MS` (Milliseconds)
 
-	- `PS` (Padded Minutes)
-		- `5` becomes `05`, `18` remains `18`
+- `PM` (Padded Minutes)
+	- `5` becomes `05`, `18` remains `18`
 
-	- `1MS` (1 Place Precision Milliseconds)
-		- `.466` becomes `.5`, `.421` becomes `.4`
+- `PS` (Padded Minutes)
+	- `5` becomes `05`, `18` remains `18`
 
-	- `2MS` (2 Place Precision Milliseconds)
-		- `.466` becomes `.47`, `.4` becomes `.40`
+- `1MS` (1 Place Precision Milliseconds)
+	- `.466` becomes `.5`, `.421` becomes `.4`
 
-	- `3MS` (3 Place Precision Milliseconds)
-		- `.4` becomes `.400`
+- `2MS` (2 Place Precision Milliseconds)
+	- `.466` becomes `.47`, `.4` becomes `.40`
 
-	- `TS` (Total Seconds)
+- `3MS` (3 Place Precision Milliseconds)
+	- `.4` becomes `.400`
 
-	- `ST` (Start Time)
-		- Represented in seconds
+- `TS` (Total Seconds)
 
-	- `ET` (End Time)
-		- Represented in seconds
+- `ST` (Start Time)
+	- Represented in seconds
 
-	- `TT` (Total Time)
-		- In the format `H:MM:SS.xxx`
-		- If the run is less than an hour then hours are not shown
-		- Milliseconds use 3 place precision
-		- If the run is less than a minute, `0` is shown for the minutes
+- `ET` (End Time)
+	- Represented in seconds
 
-	- `SF` (Start Frame)
+- `TT` (Total Time)
+	- In the format `H:MM:SS.xxx`
+	- If the run is less than an hour then hours are not shown
+	- Milliseconds use 3 place precision
+	- If the run is less than a minute, `0` is shown for the minutes
 
-	- `EF` (End Frame)
+- `SF` (Start Frame)
 
-	- `TF` (Total Frames)
+- `EF` (End Frame)
+
+- `TF` (Total Frames)
 
 ## Example Usage
 
@@ -76,4 +77,4 @@ Retimed! 5'09"167
 
 ## BUGS
 
-	- Multiline mod notes currently are not supported.
+- Multiline mod notes currently are not supported.
