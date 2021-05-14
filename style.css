@@ -78,8 +78,6 @@ a {
 	background-color: transparent;
 	color: var(--url-color);
 	text-decoration: underline;
-	text-decoration-skip: ink;
-	-webkit-text-decoration-skip: objects;
 }
 
 a:focus, a:hover {
@@ -116,9 +114,25 @@ button, code, input, textarea {
 	margin: 0;
 }
 
-.switch {
+#settings, #back {
 	display: inline-flex;
+	fill: var(--text-color);
 	float: right;
+	height: 34px;
+	position: relative;
+	width: 34px;
+}
+
+.options {
+	margin: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.switch {
+	float: left;
 	height: 34px;
 	position: relative;
 	width: 60px;
