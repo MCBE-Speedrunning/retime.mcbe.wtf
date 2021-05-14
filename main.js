@@ -19,8 +19,8 @@ function compute()
 	const seconds = Math.round(frames / fps * 1000) / 1000;
 
 	/* Show the time and mod message in the DOM. */
-	const s_frame = Math.trunc(s_time * fps);
-	const e_frame = Math.trunc(e_time * fps);
+	const s_frame = ~~(s_time * fps);
+	const e_frame = ~~(e_time * fps);
 	const time = time_format(seconds);
 
 	document.getElementById("time").value = time;
@@ -38,13 +38,16 @@ function generate_mod_message(
 
 	const hours = ~~(total_seconds / 3600)
 	const minutes = ~~((total_seconds % 3600) / 60);
-	const seconds = Math.trunc(total_seconds % 60);
+	const seconds = ~~(total_seconds % 60);
 	const milliseconds = total_seconds % 60 % 1;
 
 	const padded_minutes = (minutes < 10) ? "0" + minutes : minutes;
 	const padded_seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-	/* TODO: THIS IS REALLY BAD CODE!! FIX THIS!! */
+	/*
+	 * TODO: THIS IS REALLY STUPID CODE!!
+	 * In a language as bloated as JS surely there is a better way??
+	 */
 	const one_prec_millis = milliseconds.toFixed(1).replace("0.", "");
 	const two_prec_millis = milliseconds.toFixed(2).replace("0.", "");
 	const three_prec_millis = milliseconds.toFixed(3).replace("0.", "");
