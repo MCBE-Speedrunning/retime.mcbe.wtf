@@ -9,18 +9,18 @@ can be a pain. This fork of Matt Braddocks' popular
 [yt-frame-retimer](https://github.com/slashinfty/yt-frame-timer) aims to solve that problem by
 simply removing the ad.
 
-This fork also has a few other tweaks:
+This fork also has a few other tweaks: (ranked by importance)
 
-* Dark theme!
+- Dark theme!
 
-* The "about" section has been removed, as it only took up space.
+- Custom mod messages.
 
-* The default FPS has been changed from 60 to 30, which is a more popular FPS for runs.
+- The default FPS has been changed from 60 to 30, which is a more popular FPS for runs.
 
-* The mod message has been changed to include the exact frame instead of timestamps.
+- Removed the alert that appears when copying the mod message.
 
-* The time format has been changed from `Xh Xm Xs Xms` to `XX:XX:XX.XXX`.
+- Better Google Drive support.
 
-* Removed the alert that appears when copying the mod message.
+- You can toggle the extra text and titles on and off, useful for small screens.
 
-* Better Google Drive support.
+- The "about" section has been removed, as it only took up space.
