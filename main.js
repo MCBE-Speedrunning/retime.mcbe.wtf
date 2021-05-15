@@ -1,3 +1,5 @@
+/* Import the interpolate function*/
+import interpolate from "interpolate.js";
 /* Compute the total duration of the run. */
 function compute()
 {
@@ -51,30 +53,24 @@ function generate_mod_message(
 	const one_prec_millis = milliseconds.toFixed(1).replace("0.", "");
 	const two_prec_millis = milliseconds.toFixed(2).replace("0.", "");
 	const three_prec_millis = milliseconds.toFixed(3).replace("0.", "");
-
-	mod_message = mod_message.replaceAll("${FPS}", fps)
-			      .replaceAll("${H}", hours)
-			      .replaceAll("${M}", minutes)
-			      .replaceAll("${S}", seconds)
-			      .replaceAll("${MS}", milliseconds)
-
-			      .replaceAll("${PM}", padded_minutes)
-			      .replaceAll("${PS}", padded_seconds)
-
-			      .replaceAll("${1MS}", one_prec_millis)
-			      .replaceAll("${2MS}", two_prec_millis)
-			      .replaceAll("${3MS}", three_prec_millis)
-
-			      .replaceAll("${TS}", total_seconds)
-
-			      .replaceAll("${ST}", start_time)
-			      .replaceAll("${ET}", end_time)
-			      .replaceAll("${TT}", total_time)
-
-			      .replaceAll("${SF}", start_frame)
-			      .replaceAll("${EF}", end_frame)
-			      .replaceAll("${TF}", total_frames)
-
+	const params = {
+            H: hours,
+            M: minutes,
+            S: seconds,
+            MS: milliseconds,
+            PM: padded_minutes,
+            PS: padded_seconds,
+            "1MS": one_prec_millis,
+            "2MS": two_prec_millis,
+            "3MS": three_prec_millis,
+            ST: start_time,
+            ET: end_time,
+			TT: total_time,
+            SF: start_frame,
+			EF:  end_frame,
+			TF: total_frames
+		};
+	mod_message = interpolate (mod_message,params);
 	return mod_message;
 }
 
