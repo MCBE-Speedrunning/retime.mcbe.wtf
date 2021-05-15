@@ -1,6 +1,6 @@
 const regex = /\${[^{]+}/g;
 
-export default function interpolate(template, variables, fallback) {
+export default function interpolate(template, variables) {
     return template.replace(regex, (match) => {
         const path = match.slice(2, -1).trim();
         return getObjPath(path, variables);
