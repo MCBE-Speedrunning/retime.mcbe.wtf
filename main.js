@@ -1,11 +1,3 @@
-/* Define the interpolate function */
-function interpolate(template, variables)
-{
-	return template.replace(/\${[^{]+}/g, (match) => {
-		const path = match.slice(2, -1).trim();
-		return variables[path];
-	});
-}
 /* Compute the total duration of the run. */
 function compute()
 {
@@ -38,27 +30,32 @@ function compute()
 	document.getElementById("mod_message_button").disabled = false;
 }
 
+/* Helper function for custom mod messages */
+function interpolate(template, variables)
+{
+	return template.replace(/\${[^{]+}/g, (match) => {
+		const path = match.slice(2, -1).trim();
+		return variables[path];
+	});
+}
+
 /* Support custom mod messages. Find a better way to do this, it is very cringe! */
 function generate_mod_message(
 	fps, start_time, end_time, total_time, start_frame, end_frame, total_frames, total_seconds)
 {
 	let mod_message = localStorage.getItem("custom_mod_message");
 
+	/* TODO: Make this lazy instead of strict? */
 	const hours = ~~(total_seconds / 3600)
 	const minutes = ~~((total_seconds % 3600) / 60);
 	const seconds = ~~(total_seconds % 60);
 	const milliseconds = total_seconds % 60 % 1;
-
 	const padded_minutes = (minutes < 10) ? "0" + minutes : minutes;
 	const padded_seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-	/*
-	 * TODO: THIS IS REALLY STUPID CODE!!
-	 * In a language as bloated as JS surely there is a better way??
-	 */
 	const one_prec_millis = milliseconds.toFixed(1).replace("0.", "");
 	const two_prec_millis = milliseconds.toFixed(2).replace("0.", "");
 	const three_prec_millis = milliseconds.toFixed(3).replace("0.", "");
+
 	const params = {
 		H: hours,
 		M: minutes,
