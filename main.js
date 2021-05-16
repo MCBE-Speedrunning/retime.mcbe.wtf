@@ -1,5 +1,6 @@
 /* Define the interpolate function */
-function interpolate(template, variables) {
+function interpolate(template, variables)
+{
 	return template.replace(/\${[^{]+}/g, (match) => {
 		const path = match.slice(2, -1).trim();
 		return variables[path];
@@ -135,7 +136,7 @@ function parse_time(event)
 	}
 
 	/* If cmt isn't available fallback to lct, also allow raw numbers */
-	if (!(input = dinfo.cmt) && !(input = dinfo.lct) && typeof((input = dinfo)) !== "number") {
+	if (!(input = dinfo.cmt) && !(input = dinfo.lct) && typeof ((input = dinfo)) !== "number") {
 		document.getElementById(event.target.id).value = "";
 		return;
 	}
