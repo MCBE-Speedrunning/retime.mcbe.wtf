@@ -87,9 +87,18 @@ function set_mod_message(event)
 	if (event && event.target.value.replace(/\s/g, ""))
 		localStorage.setItem("custom_mod_message", event.target.value);
 	else {
-		if (event)
-			event.target.value = mod_message_default;
-		localStorage.setItem("custom_mod_message", mod_message_default);
+		let mm;
+		if (event) {
+			mm = mod_message_default;
+			event.target.value = mm;
+		}
+		else {
+			mm = localStorage.getItem("custom_mod_message");
+			if (!mm)
+				mm = mod_message_default;
+		}
+
+		localStorage.setItem("custom_mod_message", mm);
 	}
 }
 
