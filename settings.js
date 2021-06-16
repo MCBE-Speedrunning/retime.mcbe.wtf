@@ -55,7 +55,7 @@ function remove_titles()
 	}
 
 	if (checked && !window.location.href.endsWith("settings.html"))
-		for (let element of document.getElementsByTagName("h3"))
+		for (let element of document.getElementsByTagName("h2"))
 			element.classList.add("hidden");
 	localStorage.setItem("remove_titles", checked.toString());
 }
