@@ -56,7 +56,11 @@ h1 {
 	width: var(--screen-width);
 }
 
-h1, h3 {
+h2 {
+	font-size: 18px;
+}
+
+h1, h2 {
 	margin: 1.8em 0;
 	line-height: 1.33;
 }
@@ -65,7 +69,7 @@ p {
 	margin: 1.2em 0;
 }
 
-button, h1, h3, input, p, textarea {
+button, h1, h2, input, p, textarea {
 	color: var(--text-color);
 }
 
