@@ -122,6 +122,10 @@ button, code, input, textarea {
 	width: 34px;
 }
 
+.own_line {
+	width: 100%;
+}
+
 .options {
 	margin: 0;
 }

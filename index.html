@@ -63,16 +63,20 @@
 	</p>
 	<p>
 		<label for="startobj">Starting frame: </label>
-		<input type="text" id="startobj" style='width:100%' onchange='parse_time(event)'>
+		<input type="text" id="startobj" class="own_line" onchange='parse_time(event)'>
 	</p>
 	<p>
 		<label for="endobj">Ending frame: </label>
-		<input type="text" id="endobj" style='width:100%' onchange='parse_time(event)'>
+		<input type="text" id="endobj" class="own_line" onchange='parse_time(event)'>
 	</p>
 	<h3>Video Time</h3>
-	<input type="text" id="time" readonly size="40">
 	<p>
-		<textarea id="mod_message" cols="40" rows="3" readonly disabled>
+		<label for="time">Time: </label>
+		<input type="text" id="time" class="own_line" readonly>
+	</p>
+	<p>
+		<label for"mod_message">Mod Message: </label>
+		<textarea id="mod_message" class="own_line" readonly disabled>
 		</textarea>
 	</p>
 	<button id="mod_message_button" disabled onclick="copy_mod_message()">
