@@ -48,10 +48,7 @@ function remove_titles()
 		checked = document.getElementById("page_titles").checked;
 	} catch {
 		/* Index page */
-		if (localStorage.getItem("remove_titles") === "true")
-			checked = true;
-		else
-			checked = false;
+		checked = (localStorage.getItem("remove_titles") === "true");
 	}
 
 	if (checked && !window.location.href.endsWith("settings.html"))
