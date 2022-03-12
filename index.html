@@ -48,7 +48,7 @@
 	<h2>Video Framerate</h2>
 	<p class="toggleable">
 		Right click the YouTube video and select “Stats for nerds.” The third line is
-		“Current / Optimal Res” - find the two numbers after the @ and enter them for
+		“Current / Optimal Res” - find the numbers after the @ and enter them for
 		framerate.
 	</p>
 	<p>
@@ -57,17 +57,17 @@
 	</p>
 	<h2>Video Endpoints</h2>
 	<p class="toggleable">
-		Find the starting point (you can use the <code>,</code> and <code>.</code> keys to
+		Find the starting point (you can use the <kbd>,</kbd> and <kbd>.</kbd> keys to
 		find the exact frame). Right click the video and select “Copy debug info” and paste
 		it for starting frame. Repeat for ending frame.
 	</p>
 	<p>
 		<label for="startobj">Starting frame: </label>
-		<input type="text" id="startobj" class="own_line" onchange='parse_time(event)'>
+		<input type="text" id="startobj" class="own_line" originalvalue="" onchange='parse_time(event)'>
 	</p>
 	<p>
 		<label for="endobj">Ending frame: </label>
-		<input type="text" id="endobj" class="own_line" onchange='parse_time(event)'>
+		<input type="text" id="endobj" class="own_line" originalvalue="" onchange='parse_time(event)'>
 	</p>
 	<h2>Video Time</h2>
 	<p>
