@@ -73,7 +73,7 @@ button, h1, h2, input, p, textarea {
 	color: var(--text-color);
 }
 
-button, input, code, textarea {
+button, input, kbd, textarea {
 	background-color: var(--box-color);
 }
 
@@ -92,7 +92,7 @@ button {
 	text-transform: none;
 }
 
-code {
+kbd {
 	font-family: Roboto Mono, Lucida Sans Typewriter, Lucida Console, monaco, Courrier,
 		monospace;
 	font-size: 1em;
@@ -108,7 +108,7 @@ textarea {
 	overflow: auto;
 }
 
-button, code, input, textarea {
+button, kbd, input, textarea {
 	border: none;
 	border-radius: 6px;
 	font-family: sans-serif;
