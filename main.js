@@ -16,7 +16,7 @@ function compute()
 		return;
 	}
 
-	const seconds = Math.round(frames / fps * 1000) / 1000;
+	const seconds = (frames / fps).toFixed(3);
 
 	/* Show the time and mod message in the DOM. */
 	const s_frame = ~~(s_time * fps);
@@ -106,42 +106,59 @@ function copy_mod_message()
 /* If framerate is invalid, show an error message and disable start and end frame fields. */
 function check_fps(event)
 {
+	const s_time = document.getElementById("startobj");
+	const e_time = document.getElementById("endobj"); 
+
 	fps = event.target.value;
 	if (fps > 0 && fps % 1 == 0) {
-		document.getElementById("startobj").disabled = false;
-		document.getElementById("endobj").disabled = false;
+		s_time.disabled = false;
+		e_time.disabled = false;
 	}
 	else {
 		document.getElementById("framerate")
 			.setCustomValidity("Please enter a valid framerate.");
 		document.getElementById("framerate").reportValidity();
-		document.getElementById("startobj").disabled = true;
-		document.getElementById("endobj").disabled = true;
+		s_time.disabled = true;
+		e_time.disabled = true;
 	}
+	
+	calculate_frames(s_time, s_time.getAttribute("originalvalue"))
+	calculate_frames(e_time, e_time.getAttribute("originalvalue"))
 }
 
 /* Get current frame from input field (either start time or end time). */
 function parse_time(event)
 {
+	const element = document.getElementById(event.target.id);
+	sessionStorage.setItem(event.target.id, element.getAttribute("originalvalue"))
+
 	/* Return early if invalid JSON is passed (numbers are valid) */
 	let input, dinfo;
 	try {
-		dinfo = JSON.parse(event.target.value);
+		dinfo = JSON.parse(element.value);
 	} catch {
-		document.getElementById(event.target.id).value = "";
+		element.value = "";
 		return;
 	}
 
 	/* If cmt isn't available fallback to lct, also allow raw numbers */
 	if (!(input = dinfo.cmt) && !(input = dinfo.lct) && typeof ((input = dinfo)) !== "number") {
-		document.getElementById(event.target.id).value = "";
+		element.value = "";
 		return;
 	}
+	
+	element.setAttribute("originalvalue", input)
+
+	calculate_frames(element, input);
+}
+
+function calculate_frames(element, value) {
+	if(!element.value) return;
 
 	/* Calculate the exact timestamp */
 	const fps = parseInt(document.getElementById("framerate").value);
-	const frame = ~~(input * fps) / fps;
-	document.getElementById(event.target.id).value = `${frame}`;
+	const frame = ~~(value * fps) / fps;
+	element.value = `${frame}`;
 
 	/* If all fields are filled then compute */
 	if (document.getElementById("startobj").value && document.getElementById("endobj").value)
