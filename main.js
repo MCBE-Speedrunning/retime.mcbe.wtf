@@ -143,7 +143,7 @@ function parse_time(event)
 	const frame = ~~(input * fps) / fps;
 	document.getElementById(event.target.id).value = `${frame}`;
 
-	/* If all fields are filled the compute */
+	/* If all fields are filled then compute */
 	if (document.getElementById("startobj").value && document.getElementById("endobj").value)
 		compute();
 }
