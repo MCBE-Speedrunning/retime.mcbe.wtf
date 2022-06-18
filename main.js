@@ -129,8 +129,7 @@ function check_fps(event)
 /* Get current frame from input field (either start time or end time). */
 function parse_time(event)
 {
-	const element = document.getElementById(event.target.id);
-	sessionStorage.setItem(event.target.id, element.getAttribute("originalvalue"))
+	const element = event.target;
 
 	/* Return early if invalid JSON is passed (numbers are valid) */
 	let input, dinfo;
