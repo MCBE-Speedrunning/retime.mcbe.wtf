@@ -164,3 +164,21 @@ function calculate_frames(element, value) {
 	if (document.getElementById("startobj").value && document.getElementById("endobj").value)
 		compute();
 }
+
+function clear_fields() {
+	/** @type HTMLInputElement */
+const framerate = document.getElementById("framerate");
+	/** @type HTMLInputElement */
+	const startobj = document.getElementById("startobj");
+	/** @type HTMLInputElement */
+	const endobj = document.getElementById("endobj");
+	/** @type HTMLInputElement */
+	const time = document.getElementById("time");
+	/** @type HTMLTextAreaElement */
+	const mod_message = document.getElementById("mod_message");
+	framerate.value = "30";
+	startobj.value = "";
+	endobj.value = "";
+	time.value = "";
+	mod_message.value = "";
+}
