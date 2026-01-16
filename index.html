@@ -3,10 +3,11 @@
 <html lang="en">
 
 <head>
-	<title>YouTube Frame Timer</title>
+	<title>Speedrun Retimer</title>
 	<meta charset="utf-8">
 	<meta name="keywords" content="Speedrun, Retime">
-	<meta name="description" content="A speedrun retime tool">
+	<meta name="description"
+		content="A speedrun retime tool that includes load time removal">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen">
 	<script defer src="main.js"></script>
@@ -38,37 +39,47 @@
 				 9.0785c-2.5181-1.4205-5.2102-2.5291-8.0546-3.322l-1.3424-14.221c
 				 -2.7503-0.46874-5.5576-0.7281-8.4414-0.7281zm0 30.967c10.516 0
 				 19.022 8.528 19.022 19.044s-8.5053 19.044-19.022 19.044c-10.516
-				 0-19.044-8.528-19.044-19.044s8.528-19.044 19.044-19.044z"/>
+				 0-19.044-8.528-19.044-19.044s8.528-19.044 19.044-19.044z" />
 		</svg>
 	</a>
-	<h1>Speedrun Retimer without Ads</h1>
-	<a href="https://github.com/MCBE-Speedrunning/retime.mcbe.wtf" target="_blank" class="toggleable" rel="noreferrer">
+	<h1>Speedrun Retimer with Load Time Removal</h1>
+	<a href="https://github.com/allbitegames/speedrun-retime-lrt" target="_blank"
+		class="toggleable" rel="noreferrer">
 		Source code (GitHub)
 	</a>
 	<h2>Video Framerate</h2>
 	<p class="toggleable">
-		Right click the YouTube video and select “Stats for nerds.” The third line is
+		Right click the YouTube video and select “Stats for nerds.” The third line
+		is
 		“Current / Optimal Res” - find the numbers after the @ and enter them for
 		framerate.
 	</p>
 	<p>
 		<label for="framerate">Framerate: </label>
-		<input type="text" id="framerate" size="3" value="30" onchange='check_fps(event)'>
+		<input type="text" id="framerate" size="3" value="30"
+			onchange='check_fps(event)'>
 	</p>
 	<h2>Video Endpoints</h2>
 	<p class="toggleable">
-		Find the starting point (you can use the <kbd>,</kbd> and <kbd>.</kbd> keys to
-		find the exact frame). Right click the video and select “Copy debug info” and paste
+		Find the starting point (you can use the <kbd>,</kbd> and <kbd>.</kbd> keys
+		to
+		find the exact frame). Right click the video and select “Copy debug info”
+		and paste
 		it for starting frame. Repeat for ending frame.
 	</p>
 	<p>
 		<label for="startobj">Starting frame: </label>
-		<input type="text" id="startobj" class="own_line" originalvalue="" onchange='parse_time(event)'>
+		<input type="text" id="startobj" class="own_line" originalvalue=""
+			onchange='parse_time(event)'>
 	</p>
 	<p>
 		<label for="endobj">Ending frame: </label>
-		<input type="text" id="endobj" class="own_line" originalvalue="" onchange='parse_time(event)'>
+		<input type="text" id="endobj" class="own_line" originalvalue=""
+			onchange='parse_time(event)'>
 	</p>
+	<button id="add_lrt_button" onclick="">
+		Clear
+	</button>
 	<h2>Video Time</h2>
 	<p>
 		<label for="time">Time: </label>

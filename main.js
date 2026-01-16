@@ -1,6 +1,5 @@
 /* Compute the total duration of the run. */
-function compute()
-{
+function compute() {
 	const fps = parseInt(document.getElementById("framerate").value);
 	const s_time = document.getElementById("startobj").value;
 	const e_time = document.getElementById("endobj").value;
@@ -31,8 +30,7 @@ function compute()
 }
 
 /* Helper function for custom mod messages */
-function interpolate(template, variables)
-{
+function interpolate(template, variables) {
 	return template.replace(/\${[^{]+}/g, (match) => {
 		const path = match.slice(2, -1).trim();
 		return variables[path];
@@ -41,11 +39,9 @@ function interpolate(template, variables)
 
 /* Support custom mod messages. Find a better way to do this, it is very cringe! */
 function generate_mod_message(
-	fps, start_time, end_time, total_time, start_frame, end_frame, total_frames, total_seconds)
-{
+	fps, start_time, end_time, total_time, start_frame, end_frame, total_frames, total_seconds) {
 	let mod_message = localStorage.getItem("custom_mod_message");
 
-	/* TODO: Make this lazy instead of strict? */
 	const hours = ~~(total_seconds / 3600)
 	const minutes = ~~((total_seconds % 3600) / 60);
 	const seconds = ~~(total_seconds % 60);
@@ -79,8 +75,7 @@ function generate_mod_message(
 }
 
 /* Convert seconds to human readable time. */
-function time_format(t)
-{
+function time_format(t) {
 	const h = ~~(t / 3600);
 	const m = ~~((t % 3600) / 60);
 	const s = t % 60;
@@ -95,8 +90,7 @@ function time_format(t)
 }
 
 /* Allow user to copy mod message to clipboard. */
-function copy_mod_message()
-{
+function copy_mod_message() {
 	const mod_message = document.getElementById("mod_message");
 	mod_message.focus();
 	mod_message.select();
@@ -104,10 +98,9 @@ function copy_mod_message()
 }
 
 /* If framerate is invalid, show an error message and disable start and end frame fields. */
-function check_fps(event)
-{
+function check_fps(event) {
 	const s_time = document.getElementById("startobj");
-	const e_time = document.getElementById("endobj"); 
+	const e_time = document.getElementById("endobj");
 
 	fps = event.target.value;
 	if (fps > 0 && fps % 1 == 0) {
@@ -121,14 +114,13 @@ function check_fps(event)
 		s_time.disabled = true;
 		e_time.disabled = true;
 	}
-	
+
 	calculate_frames(s_time, s_time.getAttribute("originalvalue"))
 	calculate_frames(e_time, e_time.getAttribute("originalvalue"))
 }
 
 /* Get current frame from input field (either start time or end time). */
-function parse_time(event)
-{
+function parse_time(event) {
 	const element = document.getElementById(event.target.id);
 	sessionStorage.setItem(event.target.id, element.getAttribute("originalvalue"))
 
@@ -146,14 +138,14 @@ function parse_time(event)
 		element.value = "";
 		return;
 	}
-	
+
 	element.setAttribute("originalvalue", input)
 
 	calculate_frames(element, input);
 }
 
 function calculate_frames(element, value) {
-	if(!element.value) return;
+	if (!element.value) return;
 
 	/* Calculate the exact timestamp */
 	const fps = parseInt(document.getElementById("framerate").value);
@@ -167,7 +159,7 @@ function calculate_frames(element, value) {
 
 function clear_fields() {
 	/** @type HTMLInputElement */
-const framerate = document.getElementById("framerate");
+	const framerate = document.getElementById("framerate");
 	/** @type HTMLInputElement */
 	const startobj = document.getElementById("startobj");
 	/** @type HTMLInputElement */
