@@ -167,7 +167,7 @@ function calculate_frames(element, value) {
 
 function clear_fields() {
 	/** @type HTMLInputElement */
-const framerate = document.getElementById("framerate");
+	const framerate = document.getElementById("framerate");
 	/** @type HTMLInputElement */
 	const startobj = document.getElementById("startobj");
 	/** @type HTMLInputElement */
@@ -180,5 +180,5 @@ const framerate = document.getElementById("framerate");
 	startobj.value = "";
 	endobj.value = "";
 	time.value = "";
-	mod_message.value = "";
+	mod_message.innerText = "";
 }
